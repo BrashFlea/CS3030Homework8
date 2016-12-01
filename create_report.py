@@ -7,25 +7,25 @@
 # Distributed under terms of the MIT license.
 import sys
 
-"""
-Takes beginning date and end date as parameters to query the database.
-Converts the inputs to proper format YYYY-MM-DD hh:mm
+
+def convDate(beg_date, end_date):
+    """
+    Takes beginning date and end date as parameters to query the database.
+    Converts the inputs to proper format YYYY-MM-DD hh:mm
     Args:
         beg_date: date in YYYYMMDD format
         end_date: date in YYYYMMDD format
     Returns:
-"""
+    """
 
-
-def convDate(beg_date, end_date):
     if(len(str(beg_date)) != 8 or len(str(end_date)) != 8):
         print("Improper date format. Please use the format <YYYYMMDD>")
         exit(-1)
 
-    #Convert to list for slicing
+    #Convert to list to add elements
     convB_date = list(str(beg_date))
     convE_date = list(str(end_date))
-    #Add dashes and time
+    #Add dashes, whitespace, and time
     #Year
     convB_date.insert(4, "-")
     convE_date.insert(4, "-")
@@ -43,7 +43,6 @@ def convDate(beg_date, end_date):
     bDate = "".join(convB_date)
     eDate = "".join(convE_date)
 
-    print(convB_date, " ", convE_date)
     print(bDate, " ", eDate)
     
 
