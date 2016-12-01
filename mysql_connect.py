@@ -5,7 +5,7 @@ import mysql.connector
 from mysql.connector import Error, MySQLConnection
 
 
-def connect():
+def connect(bDate, eDate):
     """
     Connect to SQL Database with config file
     """
@@ -20,13 +20,11 @@ def connect():
         else:
             print("Connection Failed")
 
-        # Select some data
+        # Select data using bDate and eDate as delimiters
         cursor = conn.cursor()
-        cursor.execute("SELECT * FROM customer")
+        cursor.execute("SELECT * FROM products p, trans t, trans_line tl WHERE p.prod_num = tl.prod_num AND tl.trans_id = t.trans_id AND t.trans_date BETWEEN %s AND %s ORDER BY t.trans_date", (bDate, eDate))
         # Store it in a list
         contents = list(cursor.fetchall())
-        if contents is not None:
-            return contents
 
     except Error as error:
         print(error)
@@ -35,6 +33,9 @@ def connect():
         cursor.close()
         conn.close()
         print("Connection Close")
+        if contents is not None:
+            print("Here's the data")
+            return contents
 
 
 # Main function

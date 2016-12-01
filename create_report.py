@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 # vim:fenc=utf-8
 #
-# Copyright ÃÂ© 2016 Jonathan <jonathanmirabile@mail.weber.edu>
+# Copyright ÃÂÃÂ© 2016 Jonathan <jonathanmirabile@mail.weber.edu>
 #
 # Distributed under terms of the MIT license.
 import sys
@@ -46,8 +46,10 @@ def convDate(beg_date, end_date):
     #Assign to new variables for database query
     bDate = "".join(convB_date)
     eDate = "".join(convE_date)
-    
-    contents = connect()
+
+    #Connect to database and retrieve contents for manipulation
+    contents = connect(bDate, eDate)
+    print(contents)
     
 
 # Main function
@@ -59,7 +61,7 @@ def main(beg_date, end_date):
 if __name__ == "__main__":
     # Call Main
     beg_date = 20001018
-    end_date = 20161018
+    end_date = 20161231
     main(beg_date, end_date)
 
     exit(0)
