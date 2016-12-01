@@ -2,13 +2,14 @@
 # -*- coding: utf-8 -*-
 # vim:fenc=utf-8
 #
-# Copyright ÃÂÃÂ© 2016 Jonathan <jonathanmirabile@mail.weber.edu>
+# Copyright ÃÂÃÂÃÂÃÂ© 2016 Jonathan <jonathanmirabile@mail.weber.edu>
 #
 # Distributed under terms of the MIT license.
 import sys
 from configparser import ConfigParser
 from dbconfig import read_db_config
 from mysql_connect import connect
+from pprint import pprint as pp
 
 
 def convDate(beg_date, end_date):
