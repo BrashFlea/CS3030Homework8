@@ -2,10 +2,13 @@
 # -*- coding: utf-8 -*-
 # vim:fenc=utf-8
 #
-# Copyright © 2016 Jonathan <jonathanmirabile@mail.weber.edu>
+# Copyright ÃÂ© 2016 Jonathan <jonathanmirabile@mail.weber.edu>
 #
 # Distributed under terms of the MIT license.
 import sys
+from configparser import ConfigParser
+from dbconfig import read_db_config
+from mysql_connect import connect
 
 
 def convDate(beg_date, end_date):
@@ -17,6 +20,7 @@ def convDate(beg_date, end_date):
         end_date: date in YYYYMMDD format
     Returns:
     """
+    db = read_db_config()
 
     if(len(str(beg_date)) != 8 or len(str(end_date)) != 8):
         print("Improper date format. Please use the format <YYYYMMDD>")
@@ -42,10 +46,9 @@ def convDate(beg_date, end_date):
     #Assign to new variables for database query
     bDate = "".join(convB_date)
     eDate = "".join(convE_date)
-
-    print(bDate, " ", eDate)
     
-
+    contents = connect()
+    
 
 # Main function
 def main(beg_date, end_date):
