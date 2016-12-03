@@ -8,6 +8,7 @@ Bryson Oakley
 
 Python/MySQL/Bash report generator
 
+
 **Module 1** - config.ini file containing database credentials. Obviously this has been omitted from the repository for security reasons. 
 
 The required format for the config.ini file is as follows:
@@ -24,6 +25,7 @@ password = PASSWORD
 
 The config.ini file is parsed by the included dbconfig.py module and passed to mysql\_connect.py for use in Module 2 
 
+
 **Module 2** - create\_report.py 
 
 Requires two arguments (*beg\_date*, *end\_date*) in the format &lt;YYYYMMDD&gt;
@@ -38,18 +40,19 @@ Exit codes:
 
 **0:** Successful execution
 
+
 **Script 1** - run\_report.sh
 
 Shell wrapper script that runs create\_report.py, generates a zipped copy of the report, uploads it to the given FTP server, and emails the status of the FTP upload. 
 
 Required paramters:
 
--f &lt;BegDate&gt;
+**-f** &lt;BegDate&gt;
 
--t &lt;EndDate&gt;
+**-t** &lt;EndDate&gt;
 
--e &lt;email&gt;
+**-e** &lt;email&gt;
 
--u &lt;user&gt;
+**-u** &lt;user&gt;
 
--p &lt;passwd&gt;
+**-p** &lt;passwd&gt;
