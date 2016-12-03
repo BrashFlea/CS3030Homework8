@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 # vim:fenc=utf-8
 #
-# Copyright ÃÂÃÂÃÂÃÂ© 2016 Jonathan <jonathanmirabile@mail.weber.edu>
+# Copyright Â© 2016 Jonathan <jonathanmirabile@mail.weber.edu>
 #
 # Distributed under terms of the MIT license.
 import sys
@@ -48,9 +48,20 @@ def convDate(beg_date, end_date):
     bDate = "".join(convB_date)
     eDate = "".join(convE_date)
 
-    #Connect to database and retrieve contents for manipulation
+    #Connect to database and retrieve contents for display
     contents = connect(bDate, eDate)
-    print(contents)
+    
+    #The fun part, making the fixed length record.
+    #Should always be 83 characters long
+    #Index, Name, Size 
+    #[0], Transaction ID,   5
+    #[1], Transaction date, 12
+    #[2], Card number,      6
+    #[3], Prod 1 qty,       2
+
+    for entry in contents:
+        print(entry)
+        print('{0:05d}{1:012d}{2:06d}'.format(int(entry[0]), int(entry[1]), int(entry[2])))
     
 
 # Main function
