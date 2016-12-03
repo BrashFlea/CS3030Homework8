@@ -24,4 +24,16 @@ password = PASSWORD
 
 The config.ini file is parsed by the included dbconfig.py module and passed to mysql\_connect.py for use in Module 2 
 
-**Module 2** - create\_report 
+**Module 2** - create\_report.py 
+
+Requires two arguments (*beg\_date*, *end\_date*) in the format &lt;YYYYMMDD&gt;
+
+Connects to the database using config.ini parsed by dbconfig.py and generates a fixed length report using *beg\_date* and *end\_date* as delimiters for the data.
+
+Exit codes:
+
+**-1:** Improper date format
+
+**-2:** No data for given date range
+
+**0:** Successful execution
