@@ -34,7 +34,6 @@ def connect(bDate, eDate):
         conn.close()
         print("Connection Close")
         if contents is not None:
-            print("Here's the data")
             return contents
 
 

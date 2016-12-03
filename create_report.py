@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 # vim:fenc=utf-8
 #
-# Copyright Â© 2016 Jonathan <jonathanmirabile@mail.weber.edu>
+# Copyright ÃÂ© 2016 Jonathan <jonathanmirabile@mail.weber.edu>
 #
 # Distributed under terms of the MIT license.
 import sys
@@ -25,6 +25,7 @@ def convDate(beg_date, end_date):
 
     if(len(str(beg_date)) != 8 or len(str(end_date)) != 8):
         print("Improper date format. Please use the format <YYYYMMDD>")
+        #Exit code 255 in Bash
         exit(-1)
 
     #Convert to list to add elements
@@ -50,6 +51,10 @@ def convDate(beg_date, end_date):
 
     #Connect to database and retrieve contents for display
     contents = connect(bDate, eDate)
+    if not contents:
+        print("No data for given date range")
+        #Exit code 254 in Bash
+        exit(-2)
     
     #The fun part, making the fixed length record.
     #Should always be 47 characters long
@@ -63,7 +68,6 @@ def convDate(beg_date, end_date):
     #[6], Prod total,       6,  int
 
     for entry in contents:
-        print(entry)
         print('{0:05d}{1:012d}{2:06d}{3:02d}{4:06d}{5:10}{6:06d}'.format(int(entry[0]), int(entry[1]), int(entry[2]), int(entry[3]), int(entry[4]), entry[5], int(entry[6])))
     
 
@@ -77,7 +81,12 @@ if __name__ == "__main__":
     # Call Main
     beg_date = 20001018
     end_date = 20161231
-    main(beg_date, end_date)
-
-    exit(0)
+    if len(sys.argv) == 1:
+        main(beg_date, end_date)
+        #Exit code 0 in Bash
+        exit(0)
+    else:
+        main(sys.argv[1], sys.argv[2])
+        #Exit code 0 in Bash
+        exit(0)
 
