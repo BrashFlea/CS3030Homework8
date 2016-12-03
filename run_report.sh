@@ -48,10 +48,22 @@ then
 fi
 
 python3 create_report.py $begin $end
+result=$?
 
-if [[ $? -eq 0 ]]
+if [[ $result -eq 255 ]] # For some reaseon, if python exits with a negative number, it is just taken away from 256
 then
-	
+	echo "Exited with -1. Sending an email..."
+	#mail -s "The create_report program exited with code -1" -r "run_report_script@yourscripts.net" $email << EOF
+	#The create_report could not run due to invalid date params. Please review it's documentation.
+#EOF
+elif [[ $result -eq 254 ]]
+then
+	echo "Exited with -2. Sending an email..."
+	#mail -s "The create_report program exited with code -2" -r "run_report_script@yourscripts.net" $email << EOF
+	#The create_report program ran, but no transactions were found within the specified date range
+#EOF
+else
+	echo "All good"
 fi
 
 exit 0
