@@ -10,7 +10,7 @@ Python/MySQL/Bash report generator
 
 **Module 1** - config.ini file containing database credentials. Obviously this has been omitted from the repository for security reasons. 
 
-The requires format for the config.ini file is as follows:
+The required format for the config.ini file is as follows:
 
 [mysql]
 
@@ -37,3 +37,19 @@ Exit codes:
 **-2:** No data for given date range
 
 **0:** Successful execution
+
+**Script 1** - run\_report.sh
+
+Shell wrapper script that runs create\_report.py, generates a zipped copy of the report, uploads it to the given FTP server, and emails the status of the FTP upload. 
+
+Required paramters:
+
+-f &lt;BegDate&gt;
+
+-t &lt;EndDate&gt;
+
+-e &lt;email&gt;
+
+-u &lt;user&gt;
+
+-p &lt;passwd&gt;
