@@ -22,7 +22,7 @@ def connect(bDate, eDate):
 
         # Select data using bDate and eDate as delimiters
         cursor = conn.cursor()
-        cursor.execute("SELECT t.trans_id, DATE_FORMAT(t.trans_date, \"%Y%m%d%h%i\") as trans_date, SUBSTRING(t.card_num, 9,14) AS card_num, p.prod_desc, t.total FROM products p, trans t, trans_line tl WHERE p.prod_num = tl.prod_num AND tl.trans_id = t.trans_id AND t.trans_date BETWEEN %s AND %s ORDER BY t.trans_date", (bDate, eDate))
+        cursor.execute("SELECT t.trans_id, DATE_FORMAT(t.trans_date, \"%Y%m%d%h%i\") as trans_date, SUBSTRING(t.card_num, 9,14) AS card_num, tl.qty, tl.amt, p.prod_desc, t.total FROM products p, trans t, trans_line tl WHERE p.prod_num = tl.prod_num AND tl.trans_id = t.trans_id AND t.trans_date BETWEEN %s AND %s ORDER BY t.trans_date", (bDate, eDate))
         # Store it in a list
         contents = list(cursor.fetchall())
 

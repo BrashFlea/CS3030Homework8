@@ -52,16 +52,19 @@ def convDate(beg_date, end_date):
     contents = connect(bDate, eDate)
     
     #The fun part, making the fixed length record.
-    #Should always be 83 characters long
-    #Index, Name, Size 
-    #[0], Transaction ID,   5
-    #[1], Transaction date, 12
-    #[2], Card number,      6
-    #[3], Prod 1 qty,       2
+    #Should always be 47 characters long
+    #Index, Name, Size, Type 
+    #[0], Transaction ID,   5,  int
+    #[1], Transaction date, 12, int
+    #[2], Card number,      6,  int
+    #[3], Prod qty,         2,  int
+    #[4], Prod amt,         6,  int
+    #[5], Prod desc,        10, str
+    #[6], Prod total,       6,  int
 
     for entry in contents:
         print(entry)
-        print('{0:05d}{1:012d}{2:06d}'.format(int(entry[0]), int(entry[1]), int(entry[2])))
+        print('{0:05d}{1:012d}{2:06d}{3:02d}{4:06d}{5:10}{6:06d}'.format(int(entry[0]), int(entry[1]), int(entry[2]), int(entry[3]), int(entry[4]), entry[5], int(entry[6])))
     
 
 # Main function
